@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>org.perflogstacktrace4j</groupId>
+	<artifactId>perflogstacktrace4j-parent</artifactId>
+	<version>1.0.0</version>
+
+	<packaging>pom</packaging>
+	<name>Perf-Log-Stack-Trace For Java</name>
+	<description><![CDATA[
+A glue API of ThreadLocal push/pop/log/progress for java, handling Performance stats, Log and Trace/Span
+
+
+- Enrich java native stack trace with ThreadLocal applicative stack using push/pop
+
+- Enrich Performance Counters (with time/cputime/nb of call/min/max stats) per push/pop with a fast lightweight IN-MEMORY Tree
+
+- Enrich java native stack trace with ThreadLocal applicative stack spans using simple push/pop
+
+
+- Enrich logs with current app stack context, and enrich logback formatted log text with inherited stack properties + named-values parameter in log messages.
+Appender for sending enriched log event to ElasticSearch
+
+
+--------------------------
+Optionnal Connectors / Adapters to thirdparties libraries / protocols:
+
+- logback Appender to ElasticSearch: 
+  send structured event log with enriched app stack span, and named-values
+
+- Zipkin(Spring Sleuth) or OpenTracing:
+  synchronize to Zipkin trace/spans
+  synchronize from Zipkin Tracer/Instrumenter to thread-local app stack
+
+- InfluxdDb or Prometheus exporter:
+  Exporter for in-memory Performance Stats Tree
+
+]]></description>
+
+	<url>https://github.com/Arnaud-Nauwynck/perftrace4j</url>
+
+	<organization>
+		<name>Arnaud-Nauwynck</name>
+		<url>https://github.com/Arnaud-Nauwynck</url>
+	</organization>
+	<inceptionYear>2018</inceptionYear>
+
+	<licenses>
+		<license>
+			<name>LGPL</name>
+			<url>http://www.opensource.org/licenses/lgpl-license.php</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+
+	<scm>
+		<connection>scm:git:https://github.com/Arnaud-Nauwynck/perftrace4j.git</connection>
+		<developerConnection>scm:git:git@github.com:Arnaud-Nauwynck/perftrace4j.git</developerConnection>
+		<url>https://github.com/Arnaud-Nauwynck/perftrace4j</url>
+	</scm>
+
+	<distributionManagement>
+	</distributionManagement>
+
+	<properties>
+	    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	    <java.version>1.8</java.version>
+	</properties>
+
+
+
+	<dependencyManagement>
+		<dependencies>
+
+			<!-- Thirdparties -->
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+				<version>1.7.10</version>
+			</dependency>
+			<dependency>
+				<groupId>ch.qos.logback</groupId>
+				<artifactId>logback-classic</artifactId>
+				<version>1.1.2</version>
+			</dependency>
+
+			<dependency>
+			    <groupId>com.google.guava</groupId>
+			    <artifactId>guava</artifactId>
+			    <version>18.0</version>
+			</dependency>
+			<dependency>
+			    <groupId>commons-io</groupId>
+			    <artifactId>commons-io</artifactId>
+			    <version>2.4</version>
+			</dependency>
+
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>4.12</version>
+				<scope>test</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.mockito</groupId>
+				<artifactId>mockito-all</artifactId>
+				<version>1.10.8</version>
+				<scope>test</scope>
+			</dependency>
+
+		</dependencies>
+	</dependencyManagement>
+
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-all</artifactId>
+			<scope>test</scope>
+		</dependency>
+		
+	</dependencies>
+
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.7.0</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+
+	<modules>
+		<module>perftrace4j-core</module>
+<!--
+		<module>perfstacktrace4j-logback</module>
+		<module>perfstacktrace4j-zipkin</module>
+		<module>perfstacktrace4j-opentracing</module>
+		<module>perfstacktrace4j-prometheus</module>
+		<module>perfstacktrace4j-aspectj</module>
+		<module>perfstacktrace4j-jvmagent</module>
+		<module>perfstacktrace4j-instrumentedjee</module>
+-->
+    <module>perflogstacktrace4j</module>
+  </modules>
+
+</project>
